@@ -40,6 +40,13 @@ class MainActivity : ComponentActivity(){
             runOnUiThread { stepsGoal = newGoal }
         })
 
+        val repository = FirebaseRepository()
+        repository.listnerToFitnessData(
+            onDataChanged = { fitnessData ->
+                log.d("SharedFirebaseWear", "Goal recieved: ${fitnessData.dailyGoal}")
+            }
+        )
+
         setContent {
             StepCounterTheme {
                 WearFitnessApp(

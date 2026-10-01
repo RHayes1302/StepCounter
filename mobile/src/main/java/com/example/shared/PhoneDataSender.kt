@@ -1,5 +1,4 @@
-package com.example.mobile
-
+package com.example.shared
 
 import android.content.Context
 import com.google.android.gms.wearable.PutDataMapRequest
@@ -11,9 +10,9 @@ fun sendStepsGoalToWatch(
     onSuccess: () -> Unit,
     onError: (String) -> Unit
 ){
-    val putDataMapRequest = PutDataMapRequest.create(edu.sdgku.stepcounter.FITNESS_GOALS_PATH).apply {
-        dataMap.putInt(edu.sdgku.stepcounter.STEPS_GOAL_KEY, stepsGoal)
-        dataMap.putLong(edu.sdgku.stepcounter.TIMESTAMP_KEY, System.currentTimeMillis())
+    val putDataMapRequest = PutDataMapRequest.create(FITNESS_GOALS_PATH).apply {
+        dataMap.putInt(STEPS_GOAL_KEY, stepsGoal)
+        dataMap.putLong(TIMESTAMP_KEY, System.currentTimeMillis())
     }
 
     val putDataRequest = putDataMapRequest.asPutDataRequest().setUrgent()

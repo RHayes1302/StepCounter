@@ -1,4 +1,4 @@
-package com.example.mobile
+package com.example.shared
 
 const val FITNESS_GOALS_PATH = "/fitness-goals"
 const val STEPS_GOAL_KEY = "stepsGoal"
