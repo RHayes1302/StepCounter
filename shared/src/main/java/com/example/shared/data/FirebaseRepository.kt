@@ -1,34 +1,36 @@
 package com.example.shared.data;
 
-import com.example.shared.model.FitnessData;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
+import com.example.shared.model.FitnessData
 
 class FirebaseRepository (
 
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
 ){
     private val fitnessDocument = database
-            .collection(FirestoreConstats.FITNESS_COLLECTION)
+            .collection(FirestoreConstants.FITNESS_COLLECTION)
             .document(FirestoreConstants.DEMO_USER_DOCUMENT)
 
-            fun listenToFitnessData(
-                    onDataChanged: (FitnessData) -> Unit,
-        onError: (Execption) -> Unit = {}
+    fun listenToFitnessData(
+        onDataChanged: (FitnessData) -> Unit,
+        onError: (Exception) -> Unit = {}
 
-            ): ListenerRegistrant {
+    ): ListenerRegistration{
 
-        return fitnessDocument.addSnapshotListener {,exception ->
-            if (exception !null) {
+        return fitnessDocument.addSnapshotListener {snapshot,exception ->
+            if (exception != null) {
                 onError(exception)
                 return@addSnapshotListener
         }
         if (snapshot == null || !snapshot.exists()) {
-            return@addSnapshotListner
+            return@addSnapshotListener
         }
         val fitnessData = FitnessData(
-                dailyGoal = snapshot.getLong(FirestoreConstans.FIELD_DAILY_GOAL) ?: 10000,
-                steps = snapshot.getLong(FirestoreConstans.FIELD_STEPS) ?: 0,
-                heartRate = snapshot.getLong(FirestoreConstans.FIELD_HEART_RATE) ?: 72,
+                dailyGoal = snapshot.getLong(FirestoreConstants.FIELD_DAILY_GOAL) ?: 10000,
+                steps = snapshot.getLong(FirestoreConstants.FIELD_STEPS) ?: 0,
+                heartRate = snapshot.getLong(FirestoreConstants.FIELD_HEART_RATE) ?: 72,
 
 
         )
@@ -42,31 +44,34 @@ class FirebaseRepository (
                  onSuccess: () -> Unit = {},
         onError: (Exception) -> Unit ={}
          ){
-        val data = map)f(
-                FirestoreConstants.FIELD_DAILYGOAL to fitnessData. dailygoal,
-                FirestoreConstants.FIELD_STEPS to fitnessData. dailygoal,
-                FirestoreConstants.FIELD_HEART_RATE to fitnessData. ,
-                FirestoreConstants.FIELD_UPDATE_AT to fitnessData. TimeStamp.now
+        val data = mapOf(
+                FirestoreConstants.FIELD_DAILY_GOAL to fitnessData.dailyGoal,
+                FirestoreConstants.FIELD_STEPS to fitnessData.steps,
+                FirestoreConstants.FIELD_HEART_RATE to fitnessData.heartRate,
+                FirestoreConstants.FIELD_UPDATE_AT to Timestamp.now()
 
 )
-    fitnessDocument.set(data)
-.addOnSuccessListner {onSuccess ()}
-.addOnFailureListner { exception _> onError(exception)}
+
+             fitnessDocument.set(data)
+.addOnSuccessListener {onSuccess ()}
+.addOnFailureListener { exception -> onError(exception)}
 
         }
         fun updateDailyGoal(
                 dailyGoal: Long,
-                onSucess: () -> Unit = {},
+                onSuccess: () -> Unit = {},
                 onError: (Exception) -> Unit = {}
 
         ){
 
         val fieldsWithTimestamp = mapOf(
-                FirestoreConstants. DIELD_DAILY_GOAL to dailyGoal,
-                FirestoreConstants. FIELD_UPDATED_AT to Timestamp.now(),
+                FirestoreConstants.FIELD_DAILY_GOAL to dailyGoal,
+                FirestoreConstants.FIELD_UPDATE_AT to Timestamp.now(),
         )
 
-                ,addOnSuccessListner {onSuccess()}
+            fitnessDocument.set(fieldsWithTimestamp)
+                .addOnSuccessListener { onSuccess() }
+                .addOnFailureListener { exception -> onError(exception) }
         }
 
                 }

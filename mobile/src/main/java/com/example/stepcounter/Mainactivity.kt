@@ -1,4 +1,4 @@
-package com.example.shared
+package com.example.stepcounter
 
 
 import android.os.Bundle
@@ -27,7 +27,7 @@ import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
 import android.util.Log
-import androidx.Stepcounter.shared.`data`.FirebaseRepository
+import com.example.shared.data.FirebaseRepository
 
 class MainActivity : ComponentActivity() {
 
@@ -38,9 +38,9 @@ class MainActivity : ComponentActivity() {
 
         val repository= FirebaseRepository()
         repository.updateDailyGoal(
-            dailyGoal = 555555
+            dailyGoal = 555555,
             onSuccess = { Log.d("SharedFirebase", "Goal updated from mobile")},
-            onError = {Log.d"SharedFirebase", "Could not update goal"}
+            onError = {Log.d ("SharedFirebase", "Could not update goal")}
         )
 
         setContent {

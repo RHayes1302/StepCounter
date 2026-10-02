@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.stepcounter"
-        minSdk = 36
+        minSdk = 37
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
@@ -59,4 +59,7 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.test.manifest)
     debugImplementation(libs.ui.tooling)
+    implementation(platform("com.google.firebase:firebase-bom:34.16.0"))
+    implementation("com.google.firebase:firebase-firestore")
+    implementation(project(":shared"))
 }

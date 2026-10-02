@@ -9,7 +9,8 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.setValue
 import com.google.android.gms.wearable.Wearable
 import com.example.stepcounter.presentation.theme.StepCounterTheme
-
+import com.example.shared.data.FirebaseRepository
+import android.util.Log
 class MainActivity : ComponentActivity(){
     private var heartRate by mutableIntStateOf(72)
     private var stepsGoal by mutableIntStateOf(10000)
@@ -41,9 +42,9 @@ class MainActivity : ComponentActivity(){
         })
 
         val repository = FirebaseRepository()
-        repository.listnerToFitnessData(
+        repository.listenToFitnessData(
             onDataChanged = { fitnessData ->
-                log.d("SharedFirebaseWear", "Goal recieved: ${fitnessData.dailyGoal}")
+                Log.d("SharedFirebaseWear", "Goal recieved: ${fitnessData.dailyGoal}")
             }
         )
 

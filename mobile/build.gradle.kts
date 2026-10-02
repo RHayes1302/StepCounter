@@ -1,20 +1,21 @@
 plugins {
 
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.shared"
+    namespace = "com.example.stepcounter"
     compileSdk {
         version = release(37) {
-            minorApiLevel = 1
+            minorApiLevel = 0
         }
     }
 
     defaultConfig {
-        applicationId = "com.example.mobile"
-        minSdk = 26
+        applicationId = "com.example.stepcounter"
+        minSdk = 37
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
