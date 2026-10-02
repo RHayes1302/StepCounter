@@ -1,6 +1,5 @@
 package com.example.stepcounter
 
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,9 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.wear.compose.material3.Button
-import androidx.wear.compose.material3.MaterialTheme
-import androidx.wear.compose.material3.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import android.util.Log
 import com.example.shared.data.FirebaseRepository
 
@@ -36,11 +35,11 @@ class MainActivity : ComponentActivity() {
     ) {
         super.onCreate(savedInstanceState)
 
-        val repository= FirebaseRepository()
+        val repository = FirebaseRepository()
         repository.updateDailyGoal(
             dailyGoal = 555555,
-            onSuccess = { Log.d("SharedFirebase", "Goal updated from mobile")},
-            onError = {Log.d ("SharedFirebase", "Could not update goal")}
+            onSuccess = { Log.d("SharedFirebase", "Goal updated from mobile") },
+            onError = { Log.d("SharedFirebase", "Could not update goal") }
         )
 
         setContent {
@@ -66,16 +65,21 @@ fun PhoneCompanionApp() {
     ) {
         Text(
             text = "Wear Fitness",
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.headlineMedium,
+            color = Color.Black
+        )
+        Spacer(modifier = Modifier.height(32.dp))
+        Text(
+            text = "Steps Goal",
+            style = MaterialTheme.typography.titleMedium,
+            color = Color.Gray
+        )
+        Text(
+            text = "$stepsGoal",
+            style = MaterialTheme.typography.displaySmall,
             color = Color.Black
         )
         Spacer(modifier = Modifier.height(24.dp))
-        Text(
-            text = "Steps Goal: $stepsGoal",
-            style = MaterialTheme.typography.titleMedium,
-            color = Color.Black
-        )
-        Spacer(modifier = Modifier.height(12.dp))
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -88,18 +92,18 @@ fun PhoneCompanionApp() {
                     }
                 }
             ) {
-                Text("-")
+                Text("-", style = MaterialTheme.typography.headlineSmall)
             }
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(24.dp))
 
             Button(
                 onClick = { stepsGoal += 500 }
             ) {
-                Text("+")
+                Text("+", style = MaterialTheme.typography.headlineSmall)
             }
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         Button(onClick = {
             sendStatus = "Sending..."
@@ -110,11 +114,14 @@ fun PhoneCompanionApp() {
                 onError = { errorMessage -> sendStatus = "Error: $errorMessage" }
             )
         }) {
-            Text("Send to Watch")
+            Text("Send to Watch", style = MaterialTheme.typography.titleMedium)
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Status: $sendStatus,", color = Color.Black)
-
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = "Status: $sendStatus",
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color.DarkGray
+        )
     }
 }

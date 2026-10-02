@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -27,4 +28,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.16.0"))
     implementation("com.google.firebase:firebase-firestore")
     testImplementation(libs.junit)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
 }
