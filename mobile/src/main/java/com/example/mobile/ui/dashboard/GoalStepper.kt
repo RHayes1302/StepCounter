@@ -20,7 +20,8 @@ fun GoalStepper(
     onDecrease: () -> Unit,
     onIncrease: () -> Unit,
     modifier: Modifier = Modifier,
-    largeNumber: Boolean = false
+    largeNumber: Boolean = false,
+    onGoalDropped: ((Int) -> Unit)? = null
 ) {
     Column(
         modifier = modifier,
@@ -50,14 +51,24 @@ fun GoalStepper(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            Text(
-                text = stepsGoal.toString(),
-                style = if (largeNumber) {
-                    MaterialTheme.typography.displaySmall
-                } else {
-                    MaterialTheme.typography.headlineSmall
+            val numberText = @Composable {
+                Text(
+                    text = stepsGoal.toString(),
+                    style = if (largeNumber) {
+                        MaterialTheme.typography.displaySmall
+                    } else {
+                        MaterialTheme.typography.headlineSmall
+                    }
+                )
+            }
+
+            if (onGoalDropped != null) {
+                GoalDropTarget(onGoalDropped = onGoalDropped) {
+                    numberText()
                 }
-            )
+            } else {
+                numberText()
+            }
 
             Spacer(modifier = Modifier.width(16.dp))
 

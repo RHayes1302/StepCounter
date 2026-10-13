@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,11 +22,13 @@ fun GoalEditorPane(
     onSendToWatch: () -> Unit,
     onSaveToFirebase: () -> Unit,
     modifier: Modifier = Modifier,
-    extraContent: @Composable () -> Unit = {}
+    extraContent: @Composable () -> Unit = {},
+    onGoalDropped: ((Int) -> Unit)? = null
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -33,7 +37,8 @@ fun GoalEditorPane(
             stepsGoal = stepsGoal,
             onDecrease = onDecrease,
             onIncrease = onIncrease,
-            largeNumber = !showStatusHere
+            largeNumber = !showStatusHere,
+            onGoalDropped = onGoalDropped
         )
 
         extraContent()
@@ -49,5 +54,3 @@ fun GoalEditorPane(
         )
     }
 }
-
-
