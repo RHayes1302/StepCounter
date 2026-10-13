@@ -10,7 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.example.stepcounter.R
 
 @Composable
 fun SyncActions(
@@ -28,22 +29,22 @@ fun SyncActions(
             onClick = onSendToWatch,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Send to Watch")
+            Text(stringResource(R.string.send_to_watch))
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(DashboardDimens.smallSpacerHeight))
 
         Button(
             onClick = onSaveToFirebase,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Save to Firebase")
+            Text(stringResource(R.string.send_to_firebase))
         }
 
         if (showStatus) {
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(DashboardDimens.mediumSpacerHeight))
             Text(
-                text = "Status: $sendStatus",
+                text = stringResource(R.string.status_prefix) + sendStatus,
                 style = MaterialTheme.typography.bodyLarge
             )
         }

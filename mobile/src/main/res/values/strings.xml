@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">mobile</string>
+    <string name="steps_goal_label">Steps Goal</string>
+    <string name="send_to_watch">Send to Watch</string>
+    <string name="send_to_firebase">Save to Firebase</string>
+    <string name="cloud_document">Cloud document</string>
+    <string name="drag_presents_hint">Drag a preset onto the goal (long-press, then move)</string>
+    <string name="status_prefix">"Status: "</string>
 </resources>

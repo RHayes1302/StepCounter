@@ -14,8 +14,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.shared.model.FitnessData
+import com.example.stepcounter.R
 
 @Composable
 fun DashboardInfoPane(
@@ -38,7 +40,7 @@ fun DashboardInfoPane(
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = "Cloud document",
+                text = stringResource(R.string.cloud_document),
                 style = MaterialTheme.typography.titleLarge
             )
             Text(

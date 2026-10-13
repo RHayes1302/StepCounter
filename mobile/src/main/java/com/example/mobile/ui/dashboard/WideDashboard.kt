@@ -28,7 +28,7 @@ fun WideDashboard(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp)
+            .padding(DashboardDimens.widePadding)
     ) {
         Text(
             text = "Layout: $layoutLabel",
@@ -47,7 +47,7 @@ fun WideDashboard(
                 onIncrease = onIncrease,
                 onSendToWatch = onSendToWatch,
                 onSaveToFirebase = onSaveToFirebase,
-                modifier = Modifier.weight(0.55f),
+                modifier = Modifier.weight(DashboardDimens.paneWeightEditor),
                 extraContent = extraEditorContent,
                 onGoalDropped = onGoalDropped
             )
@@ -57,7 +57,7 @@ fun WideDashboard(
             DashboardInfoPane(
                 sendStatus = sendStatus,
                 cloudData = cloudData,
-                modifier = Modifier.weight(0.45f)
+                modifier = Modifier.weight(DashboardDimens.paneWeightInspector)
             )
         }
     }

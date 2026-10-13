@@ -24,7 +24,7 @@ fun CompactDashboard(
     ) {
         Text(
             text = "Layout: $layoutLabel",
-            modifier = Modifier.padding(start = 24.dp, top = 16.dp),
+            modifier = Modifier.padding(start = DashboardDimens.compactStartPadding, top = DashboardDimens.compactTopPadding),
             style = MaterialTheme.typography.labelLarge
         )
 

@@ -7,11 +7,10 @@ android {
     namespace = "com.example.shared"
     compileSdk {
         version = release(37)
-
     }
 
     defaultConfig {
-        minSdk = 37
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -20,7 +19,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
 }
 
 dependencies {

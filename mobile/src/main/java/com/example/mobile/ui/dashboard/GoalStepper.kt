@@ -13,6 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.example.shared.model.FitnessData
+import com.example.stepcounter.R
 
 @Composable
 fun GoalStepper(
@@ -28,14 +31,14 @@ fun GoalStepper(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Wear Fitness",
+            text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.headlineMedium
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Steps Goal",
+            text = stringResource(R.string.steps_goal_label),
             style = MaterialTheme.typography.titleMedium
         )
 
